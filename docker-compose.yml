@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: mooccubex_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mooccubex
+    ports:
+      - "5432:5432"
+    volumes:
+      - mooccubex_pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mooccubex_backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      # Connect to the local `db` service container 
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/mooccubex
+    depends_on:
+      - db
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mooccubex_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      # Assuming frontend fetches directly from browser to localhost:8000
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+
+volumes:
+  mooccubex_pgdata:
