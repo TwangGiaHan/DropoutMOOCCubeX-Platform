@@ -34,7 +34,9 @@ def migrate_student_stats():
     for f in files:
         path = os.path.join(DATA_DIR, f)
         if os.path.exists(path):
-            combined.append(pd.read_csv(path))
+            df_curr = pd.read_csv(path)
+            df_curr['source_file'] = f.replace('.csv', '')
+            combined.append(df_curr)
             
     if not combined:
         print("No student stats files found.")

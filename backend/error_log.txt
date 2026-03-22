@@ -1,0 +1,43 @@
+Traceback (most recent call last):
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\venv\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column "source_file" does not exist
+LINE 1: ...DISTINCT user_id) FROM student_course_stats WHERE source_fil...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\test_db.py", line 9, in run
+    crud.get_overview_stats(db)
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\crud.py", line 18, in get_overview_stats
+    total_students = db.execute(text(f"SELECT COUNT(DISTINCT user_id) FROM student_course_stats WHERE {BASE_SRC}")).scalar() or 0
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\venv\lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\venv\lib\site-packages\sqlalchemy\orm\session.py", line 2258, in _execute_internal
+    result = conn.execute(
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\venv\lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\BI-MOOCCubeX\DropoutMOOCCubeX\backend\venv\lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "source_file" does not exist
+LINE 1: ...DISTINCT user_id) FROM student_course_stats WHERE source_fil...
+                                                             ^
+
+[SQL: SELECT COUNT(DISTINCT user_id) FROM student_course_stats WHERE source_file IN ('train_validate', 'test_P5_pred')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
