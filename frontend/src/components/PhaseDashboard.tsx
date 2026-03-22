@@ -10,7 +10,7 @@ export default function PhaseDashboard() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:8000/api/dashboard/phase/${phase}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/dashboard/phase/${phase}`)
       .then(res => res.json())
       .then(d => {
         setData(d);

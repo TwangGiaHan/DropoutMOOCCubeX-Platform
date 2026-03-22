@@ -10,7 +10,7 @@ export default function CourseList({ onSelectCourse }: { onSelectCourse?: (cours
 
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:8000/api/courses?skip=${page * 12}&limit=12`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/courses?skip=${page * 12}&limit=12`)
             .then(res => res.json())
             .then(data => {
                 setCourses(data);

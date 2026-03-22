@@ -8,7 +8,7 @@ export default function CourseDetail({ courseId, onSelectUser }: { courseId: str
 
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:8000/api/courses/${courseId}/stats`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/courses/${courseId}/stats`)
             .then(res => res.json())
             .then(d => { setData(d); setLoading(false); })
             .catch(() => setLoading(false));

@@ -10,7 +10,7 @@ app = FastAPI(title="BI MOOCCubeX API", version="1.0.0", description="Backend AP
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],  # Allow all origins for Vercel deployment
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

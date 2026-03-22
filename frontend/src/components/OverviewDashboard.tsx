@@ -8,7 +8,7 @@ export default function OverviewDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/dashboard/overview")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/dashboard/overview`)
       .then(res => res.json())
       .then(d => {
         setData(d);
@@ -27,7 +27,7 @@ export default function OverviewDashboard() {
   if (!data) {
     return (
       <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-red-600 flex items-center gap-3">
-        <p><strong>Connection Error:</strong> Cannot fetch data from `http://localhost:8000/api/dashboard/overview`. Make sure the FastAPI backend is running.</p>
+        <p><strong>Connection Error:</strong> Cannot fetch data from `{process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/dashboard/overview`. Make sure the FastAPI backend is running.</p>
       </div>
     );
   }

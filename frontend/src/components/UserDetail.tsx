@@ -8,7 +8,7 @@ export default function UserDetail({ userId }: { userId: string }) {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:8000/api/students/${userId}/stats`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/students/${userId}/stats`)
       .then(res => res.json())
       .then(d => { setData(d); setLoading(false); })
       .catch(() => setLoading(false));
