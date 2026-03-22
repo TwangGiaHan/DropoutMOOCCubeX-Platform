@@ -33,13 +33,14 @@ def get_overview_stats(db: Session):
     trend = [{"date": f"{int(row[0])}-{int(row[1]):02d}", "count": row[2]} for row in trend_result if row[0] is not None]
 
     top_courses_result = db.execute(text(f"""
-        SELECT course_id, COUNT(*) as cnt 
-        FROM student_course_stats 
-        WHERE label = 1 AND {BASE_SRC}
-        GROUP BY course_id 
+        SELECT s.course_id, c.course_name, COUNT(*) as cnt 
+        FROM student_course_stats s
+        LEFT JOIN courses c ON s.course_id = c.course_id
+        WHERE s.label = 1 AND {BASE_SRC.replace('source_file', 's.source_file')}
+        GROUP BY s.course_id, c.course_name 
         ORDER BY cnt DESC LIMIT 5
     """)).fetchall()
-    top_courses = [{"course_id": row[0], "dropout_count": row[1]} for row in top_courses_result]
+    top_courses = [{"course_id": row[0], "course_name": row[1] or "Unknown", "dropout_count": row[2]} for row in top_courses_result]
 
     return {
         "total_students": total_students,

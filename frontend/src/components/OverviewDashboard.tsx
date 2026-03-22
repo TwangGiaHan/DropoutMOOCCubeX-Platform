@@ -78,11 +78,11 @@ export default function OverviewDashboard() {
           <div className="space-y-4 relative Z-10">
             {data.top_courses.map((course: any, idx: number) => (
               <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-100 hover:border-slate-300 transition-colors shadow-sm">
-                <div className="flex items-center gap-4">
-                  <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-600">{idx + 1}</div>
-                  <span className="font-mono text-slate-700 font-semibold">{course.course_id}</span>
+                <div className="flex items-center gap-4 truncate mr-3">
+                  <div className="w-8 h-8 flex-shrink-0 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-600">{idx + 1}</div>
+                  <span className="text-slate-800 font-semibold truncate" title={course.course_id}>{course.course_name || course.course_id}</span>
                 </div>
-                <span className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm whitespace-nowrap">
                   {course.dropout_count.toLocaleString()}
                 </span>
               </div>
@@ -104,7 +104,7 @@ export default function OverviewDashboard() {
                 outerRadius={120}
                 paddingAngle={5}
                 dataKey="value"
-                label={({ percent }) => `${(percent * 100).toFixed(1)}%`}
+                label={({ percent }) => percent !== undefined ? `${(percent * 100).toFixed(1)}%` : ''}
               >
                 {pieData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
