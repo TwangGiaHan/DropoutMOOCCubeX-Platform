@@ -5,7 +5,7 @@
 ![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi)
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-316192?logo=postgresql)
 
-An advanced, full-stack Business Intelligence (BI) and Predictive Analytics platform designed to analyze learner behavior and predict student dropouts across Massive Open Online Courses (MOOCs). By leveraging the extensive **MOOCCubeX** dataset, this platform provides interactive dashboards, real-time metrics, and detailed Machine Learning evaluations across 5 distinct learning phases.
+An advanced, full-stack Business Intelligence (BI) and Predictive Analytics platform designed to analyze learner behavior and predict student dropouts across Massive Open Online Courses (MOOCs). By leveraging the extensive **[MOOCCubeX](https://github.com/THU-KEG/MOOCCubeX)** dataset, this platform provides interactive dashboards, real-time metrics, and detailed Machine Learning evaluations across 5 distinct learning phases.
 
 ---
 
@@ -13,7 +13,7 @@ An advanced, full-stack Business Intelligence (BI) and Predictive Analytics plat
 
 The platform's architecture is built upon a robust end-to-end data pipeline, from raw ingestion to client-side visualization.
 
-### 1. Data Ingest (Thu Thập Dữ Liệu)
+### 1. Data Ingest
 * **Source:** MOOCCubeX Dataset (processed CSV format).
 * **Process:** Raw data is collected and initially stored in local CSV chunks representing various learning phases. 
 * **Database Migration:** A custom automated ingestion script (`migrate_csv_to_db.py`) utilizing `pandas` processes the datasets, appends necessary phase lineage (`source_file`), and seamlessly chunks the records directly into a cloud-hosted **PostgreSQL** database on Render.
