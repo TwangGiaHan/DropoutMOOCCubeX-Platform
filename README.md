@@ -9,6 +9,15 @@ An advanced, full-stack Business Intelligence (BI) and Predictive Analytics plat
 
 ---
 
+## ✨ Key Features
+
+* **Course Management:** View a comprehensive list of all courses and drill down into detailed analytics for each specific course.
+* **Specialized Content & Subjects:** Dedicated dashboard pages for specific topics such as *Data Mining*, *Data Quality*, Learning Data Analysis, and Learning Outcome Prediction.
+* **Predictive Analytics (Experiment):** A specialized dashboard showcasing the performance results, metrics, and comparisons of 9 Machine Learning models.
+* **Backend Integration / API:** Custom API routes structured and defined directly within the Next.js `src/app` directory (alongside the core FastAPI backend).
+
+---
+
 ## 🚀 Detailed Pipeline & Data Flow
 
 The platform's architecture is built upon a robust end-to-end data pipeline, from raw ingestion to client-side visualization.
